@@ -1,24 +1,29 @@
 // FridayFinds hand-in builder.
 // Copies app/ and screenshots/ into the output directory, then writes
 // dossier.json with the vendored makefun-frontend library.
-// Node standard library only. Run: MAKEFUN_OUTPUT_DIR=<dir> node main.ts
+// Node standard library only. Run: node main.ts
+// The grader runs this with the repo read-only and no network, so the
+// output defaults to /output (its writable directory) and nothing here
+// ever deletes or writes inside the repo. Outside the grader,
+// MAKEFUN_OUTPUT_DIR overrides the default, e.g.:
+//   mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 
-import { cpSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildDossier } from "./vendor/makefun-frontend.ts";
 
 const root = dirname(fileURLToPath(import.meta.url));
-const outDir = resolve(
-  process.env.MAKEFUN_OUTPUT_DIR ?? join(root, "dist")
-);
+const outDir = resolve(process.env.MAKEFUN_OUTPUT_DIR ?? "/output");
 
-rmSync(outDir, { recursive: true, force: true });
 mkdirSync(outDir, { recursive: true });
 cpSync(join(root, "app"), join(outDir, "app"), { recursive: true });
-cpSync(join(root, "screenshots"), join(outDir, "screenshots"), {
-  recursive: true
-});
+mkdirSync(join(outDir, "screenshots"), { recursive: true });
+if (existsSync(join(root, "screenshots"))) {
+  cpSync(join(root, "screenshots"), join(outDir, "screenshots"), {
+    recursive: true
+  });
+}
 
 writeFileSync(
   join(outDir, "dossier.json"),
