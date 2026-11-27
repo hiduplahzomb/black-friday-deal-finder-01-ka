@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>FridayFinds — Black Friday Deals, Checked by Hand</title>
-<meta name="description" content="24 Black Friday 2026 deals from Amazon, Best Buy, Target and Walmart, each price-checked on 27 Nov 2026 with an honest verdict.">
+<meta name="description" content="26 Black Friday 2026 deals from Amazon, Best Buy, Target and Walmart, each price-checked between 22 and 27 Nov 2026 (UTC) with an honest verdict.">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -18,16 +18,16 @@
       </div>
     </div>
     <div class="header-stats">
-      <div class="stat"><strong>24</strong><span>verified deals</span></div>
-      <div class="stat"><strong>4</strong><span>stores</span></div>
-      <div class="stat"><strong>68%</strong><span>biggest cut</span></div>
+      <div class="stat"><strong id="stat-deals">–</strong><span>verified deals</span></div>
+      <div class="stat"><strong id="stat-stores">–</strong><span>stores</span></div>
+      <div class="stat"><strong id="stat-cut">–</strong><span>biggest cut</span></div>
     </div>
   </div>
 </header>
 
 <main class="wrap">
   <section class="intro">
-    <p>Every price below was read on a store page or a deal roundup that cites one, on <strong>27 Nov 2026</strong>. The discount is computed from the two prices shown, and each deal carries a plain verdict — <span class="badge badge-new-low">NEW LOW</span>, <span class="badge badge-strong">STRONG DEAL</span> or <span class="badge badge-routine">ROUTINE SALE</span> — with the evidence behind it. No invented prices, no stale deals.</p>
+    <p>Every price below was read on a store page or a deal roundup that cites one, between 22 and 27 Nov 2026 (UTC). The discount is computed from the two prices shown, and each deal carries a plain verdict — <span class="badge badge-new-low">NEW LOW</span>, <span class="badge badge-strong">STRONG DEAL</span> or <span class="badge badge-routine">ROUTINE SALE</span> — with the evidence behind it. No invented prices, no stale deals.</p>
   </section>
 
   <section class="controls" aria-label="Find a deal">
@@ -45,6 +45,10 @@
         <select id="store"><option value="all">All stores</option></select>
       </label>
       <label class="control">
+        <span class="control-label">Verdict</span>
+        <select id="verdict"><option value="all">All verdicts</option></select>
+      </label>
+      <label class="control">
         <span class="control-label">Minimum discount</span>
         <select id="min-discount">
           <option value="0">Any discount</option>
@@ -56,14 +60,15 @@
       <label class="control">
         <span class="control-label">Sort by</span>
         <select id="sort">
+          <option value="verdict">Best verdict</option>
           <option value="discount">Biggest discount</option>
           <option value="price">Lowest price</option>
-          <option value="verdict">Best verdict</option>
+          <option value="savings">Biggest dollar saving</option>
         </select>
       </label>
       <button id="reset" class="btn btn-reset" type="button">Clear filters</button>
     </div>
-    <p class="active-line"><span id="deal-count">24 verified deals</span> · <span id="active-filters"></span></p>
+    <p class="active-line"><span id="deal-count">26 verified deals</span> · <span id="active-filters"></span></p>
   </section>
 
   <section id="deal-list" class="grid" aria-live="polite"></section>
@@ -75,7 +80,7 @@
       <li><span class="badge badge-strong">STRONG DEAL</span> — a real cut, but the product has been this cheap before, or the same price is available elsewhere.</li>
       <li><span class="badge badge-routine">ROUTINE SALE</span> — a small cut or a rollback to an old price; worth knowing, not worth rushing for.</li>
     </ul>
-    <p>When the same product is listed at two stores, the detail view shows both prices side by side so you can see which store is actually cheaper. Prices change during Black Friday — always confirm on the store page before buying.</p>
+    <p>When the same product is listed at more than one store, the detail view shows every price side by side so you can see which store is actually cheaper. Prices change during Black Friday — always confirm on the store page before buying.</p>
     <p id="checked-at" class="checked-at"></p>
   </section>
 </main>

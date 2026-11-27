@@ -23,9 +23,23 @@ function storeMark(store) {
   return marks[store] || store.charAt(0);
 }
 
+function groupSize(deal) {
+  if (!deal.group) return 0;
+  return DEALS.filter((d) => d.group === deal.group).length;
+}
+
 function dealCard(deal) {
   const pct = discountPct(deal);
-  const saved = deal.regular - deal.sale;
+  const saved = dollarsSaved(deal);
+  const stores = groupSize(deal);
+  const compareBadge =
+    stores > 1
+      ? '<span class="compare-badge" title="Same product listed at ' +
+        stores +
+        ' stores — open Details to compare">Compare · ' +
+        stores +
+        " stores</span>"
+      : "";
   return (
     '<article class="card" data-id="' +
     deal.id +
@@ -49,6 +63,9 @@ function dealCard(deal) {
     '<p class="card-note">' +
     (deal.note || "") +
     "</p>" +
+    '<p class="card-why">' +
+    (deal.why || "") +
+    "</p>" +
     '<div class="card-prices">' +
     '<span class="price-sale">' +
     money(deal.sale) +
@@ -64,6 +81,11 @@ function dealCard(deal) {
     money(saved) +
     " · " +
     deal.store +
+    "</p>" +
+    '<p class="card-meta"><span>Checked ' +
+    deal.checked +
+    " (UTC)</span>" +
+    compareBadge +
     "</p>" +
     '<div class="card-actions">' +
     '<button class="btn btn-detail" data-detail="' +

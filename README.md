@@ -4,9 +4,9 @@
 
 # FridayFinds — Black Friday Deal Finder
 
-A static Black Friday 2026 deal finder with 24 verified deals from Amazon, Best Buy, Target, and Walmart. Every price was read from a store page or a deal roundup that cites one on 27 Nov 2026, and every deal carries an honest verdict — NEW LOW, STRONG DEAL, or ROUTINE SALE — with the evidence behind it.
+A static Black Friday 2026 deal finder with 26 verified deals from Amazon, Best Buy, Target, and Walmart. Every price was read from a store page or a deal roundup that cites one between 22 and 27 Nov 2026 (UTC), and every deal carries an honest verdict — NEW LOW, STRONG DEAL, or ROUTINE SALE — with the evidence behind it.
 
-Features: text search, category / store / minimum-discount filters, sorting by biggest discount, lowest price, or best verdict, a detail view per deal, and side-by-side price comparison when the same product is listed at more than one store. No network requests on load; system fonts only; all graphics are inline SVG/CSS.
+Features: text search (matches names, evidence, and verdicts), category / store / verdict / minimum-discount filters, sorting by best verdict, biggest discount, lowest price, or biggest dollar saving, a detail view per deal, and side-by-side price comparison when the same product is listed at more than one store. No network requests on load; system fonts only; all graphics are inline SVG/CSS.
 
 ## Run it
 

@@ -6,15 +6,31 @@ function discountPct(deal) {
   return Math.round((1 - deal.sale / deal.regular) * 100);
 }
 
+function dollarsSaved(deal) {
+  return deal.regular - deal.sale;
+}
+
 function money(amount) {
-  return "$" + amount.toFixed(2).replace(/\.00$/, "");
+  const text = amount.toLocaleString("en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+  return "$" + text.replace(/\.00$/, "");
 }
 
 function matchesQuery(deal, query) {
   if (!query) return true;
   const q = query.trim().toLowerCase();
   if (!q) return true;
-  const hay = [deal.name, deal.store, deal.category, deal.note || ""]
+  const hay = [
+    deal.name,
+    deal.store,
+    deal.category,
+    deal.note || "",
+    deal.evidence || "",
+    deal.why || "",
+    VERDICTS[deal.verdict].label
+  ]
     .join(" ")
     .toLowerCase();
   return q.split(/\s+/).every((word) => hay.includes(word));
@@ -24,6 +40,7 @@ function applyFilters(deals, state) {
   return deals.filter((deal) => {
     if (state.category && state.category !== "all" && deal.category !== state.category) return false;
     if (state.store && state.store !== "all" && deal.store !== state.store) return false;
+    if (state.verdict && state.verdict !== "all" && deal.verdict !== state.verdict) return false;
     if (state.minDiscount && discountPct(deal) < state.minDiscount) return false;
     if (!matchesQuery(deal, state.query)) return false;
     return true;
@@ -36,6 +53,8 @@ function sortDeals(deals, sortKey) {
     list.sort((a, b) => discountPct(b) - discountPct(a) || a.sale - b.sale);
   } else if (sortKey === "price") {
     list.sort((a, b) => a.sale - b.sale || discountPct(b) - discountPct(a));
+  } else if (sortKey === "savings") {
+    list.sort((a, b) => dollarsSaved(b) - dollarsSaved(a) || discountPct(b) - discountPct(a));
   } else if (sortKey === "verdict") {
     list.sort(
       (a, b) =>
