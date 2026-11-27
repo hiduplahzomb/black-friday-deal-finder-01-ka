@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FridayFinds — Black Friday Deals, Checked by Hand</title>
+<meta name="description" content="24 Black Friday 2026 deals from Amazon, Best Buy, Target and Walmart, each price-checked on 27 Nov 2026 with an honest verdict.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 10h36l-4 8H10z"/><path d="M12 20h24l-3.5 18a3 3 0 0 1-3 2.5h-11a3 3 0 0 1-3-2.5z"/><circle cx="19" cy="44" r="2.4"/><circle cx="29" cy="44" r="2.4"/></svg>
+      <div>
+        <h1>FridayFinds</h1>
+        <p class="tagline">Black Friday deals, checked by hand — not by hype.</p>
+      </div>
+    </div>
+    <div class="header-stats">
+      <div class="stat"><strong>24</strong><span>verified deals</span></div>
+      <div class="stat"><strong>4</strong><span>stores</span></div>
+      <div class="stat"><strong>68%</strong><span>biggest cut</span></div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="intro">
+    <p>Every price below was read on a store page or a deal roundup that cites one, on <strong>27 Nov 2026</strong>. The discount is computed from the two prices shown, and each deal carries a plain verdict — <span class="badge badge-new-low">NEW LOW</span>, <span class="badge badge-strong">STRONG DEAL</span> or <span class="badge badge-routine">ROUTINE SALE</span> — with the evidence behind it. No invented prices, no stale deals.</p>
+  </section>
+
+  <section class="controls" aria-label="Find a deal">
+    <div class="control-row">
+      <label class="control search-control">
+        <span class="control-label">Search</span>
+        <input id="search" type="search" placeholder="Try “airpods”, “tv”, “lego”…" autocomplete="off">
+      </label>
+      <label class="control">
+        <span class="control-label">Category</span>
+        <select id="category"><option value="all">All categories</option></select>
+      </label>
+      <label class="control">
+        <span class="control-label">Store</span>
+        <select id="store"><option value="all">All stores</option></select>
+      </label>
+      <label class="control">
+        <span class="control-label">Minimum discount</span>
+        <select id="min-discount">
+          <option value="0">Any discount</option>
+          <option value="25">25% off or more</option>
+          <option value="40">40% off or more</option>
+          <option value="50">50% off or more</option>
+        </select>
+      </label>
+      <label class="control">
+        <span class="control-label">Sort by</span>
+        <select id="sort">
+          <option value="discount">Biggest discount</option>
+          <option value="price">Lowest price</option>
+          <option value="verdict">Best verdict</option>
+        </select>
+      </label>
+      <button id="reset" class="btn btn-reset" type="button">Clear filters</button>
+    </div>
+    <p class="active-line"><span id="deal-count">24 verified deals</span> · <span id="active-filters"></span></p>
+  </section>
+
+  <section id="deal-list" class="grid" aria-live="polite"></section>
+
+  <section class="method">
+    <h2>How the verdicts work</h2>
+    <ul>
+      <li><span class="badge badge-new-low">NEW LOW</span> — the lowest price ever tracked for this product at this store.</li>
+      <li><span class="badge badge-strong">STRONG DEAL</span> — a real cut, but the product has been this cheap before, or the same price is available elsewhere.</li>
+      <li><span class="badge badge-routine">ROUTINE SALE</span> — a small cut or a rollback to an old price; worth knowing, not worth rushing for.</li>
+    </ul>
+    <p>When the same product is listed at two stores, the detail view shows both prices side by side so you can see which store is actually cheaper. Prices change during Black Friday — always confirm on the store page before buying.</p>
+    <p id="checked-at" class="checked-at"></p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>FridayFinds is an independent deal finder. It is not affiliated with Amazon, Best Buy, Target, Walmart, or any brand shown. Store links go straight to the product page at that store. Prices in USD.</p>
+  </div>
+</footer>
+
+<div id="detail-overlay" class="overlay" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="detail-panel">
+    <div id="detail-body"></div>
+  </div>
+</div>
+
+<script src="js/deals.js"></script>
+<script src="js/filters.js"></script>
+<script src="js/list.js"></script>
+<script src="js/detail.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
